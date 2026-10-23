@@ -1,0 +1,1442 @@
+[
+  {
+    "mode": "tokens",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 43,
+    "remote": "samples/camera2-qrscanner/src/main/java/com/android/camera2/qrscanner/Camera2QrScannerScreen.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "tokens",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 43,
+    "remote": "samples/camerax-qrscanner/src/main/java/com/android/camerax/qrscanner/CameraXQrScannerScreen.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "tokens",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 52,
+    "remote": "samples/camera2-qrscanner/src/main/java/com/android/camera2/qrscanner/Camera2QrScannerScreen.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "tokens",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 52,
+    "remote": "samples/camerax-qrscanner/src/main/java/com/android/camerax/qrscanner/CameraXQrScannerScreen.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 11,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/preview/CapturedMedia.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 5,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombination.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 7,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 13,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombination.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 4,
+    "remote": "app/src/main/java/com/android/camera/catalog/ui/CatalogApp.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/InAppGallery.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonPhotoViewer.kt",
+    "localStart": 13,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/scaffold/CameraSampleScaffold.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 5,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/preview/CapturedMedia.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 8,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/InAppGallery.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/InAppGallery.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 13,
+    "remote": "app/src/main/java/com/android/camera/catalog/ui/CatalogApp.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 38,
+    "remote": "samples/camera2-qrscanner/src/main/java/com/android/camera2/qrscanner/Camera2QrScannerScreen.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombinationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-flipwhilerecording/src/main/java/com/android/camerax/flipwhilerecording/CameraXFlipWhileRecordingController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-hdrvideo/src/main/java/com/android/camerax/hdrvideo/CameraXHdrVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-takeavideo/src/main/java/com/android/camerax/takeavideo/CameraXTakeAVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videopauseresume/src/main/java/com/android/camerax/videopauseresume/CameraXVideoPauseResumeController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videostabilization/src/main/java/com/android/camerax/videostabilization/CameraXVideoStabilizationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 38,
+    "remote": "samples/camerax-qrscanner/src/main/java/com/android/camerax/qrscanner/CameraXQrScannerScreen.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonPhotoViewer.kt",
+    "localStart": 11,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/overlay/FocusIndicator.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "feature-diagnostics/src/main/kotlin/dev/lunacam/feature/diagnostics/CapabilityExplorerScreen.kt",
+    "localStart": 1,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/scaffold/CameraSampleScaffold.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 12,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombination.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/MainActivity.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 64,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 9,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombinationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "samples/camerax-flipwhilerecording/src/main/java/com/android/camerax/flipwhilerecording/CameraXFlipWhileRecordingController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "samples/camerax-hdrvideo/src/main/java/com/android/camerax/hdrvideo/CameraXHdrVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "samples/camerax-takeavideo/src/main/java/com/android/camerax/takeavideo/CameraXTakeAVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "samples/camerax-videopauseresume/src/main/java/com/android/camerax/videopauseresume/CameraXVideoPauseResumeController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "samples/camerax-videostabilization/src/main/java/com/android/camerax/videostabilization/CameraXVideoStabilizationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombinationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "samples/camerax-flipwhilerecording/src/main/java/com/android/camerax/flipwhilerecording/CameraXFlipWhileRecordingController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "samples/camerax-hdrvideo/src/main/java/com/android/camerax/hdrvideo/CameraXHdrVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "samples/camerax-takeavideo/src/main/java/com/android/camerax/takeavideo/CameraXTakeAVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "samples/camerax-videopauseresume/src/main/java/com/android/camerax/videopauseresume/CameraXVideoPauseResumeController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "samples/camerax-videostabilization/src/main/java/com/android/camerax/videostabilization/CameraXVideoStabilizationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-extensions/src/main/java/com/android/camerax/extensions/CameraXExtensionsController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-takeaphoto/src/main/java/com/android/camerax/takeaphoto/CameraXTakeAPhotoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "app/src/main/java/com/android/camera/catalog/ui/CatalogApp.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 12,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/preview/CapturedMedia.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/MainActivity.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "app/src/main/java/com/android/camera/catalog/ui/CatalogApp.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/MainActivity.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 12,
+    "remote": "app/src/main/java/com/android/camera/catalog/ui/CatalogApp.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "app/src/main/java/com/android/camera/catalog/ui/CatalogApp.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/LunaCamApp.kt",
+    "localStart": 9,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/InAppGallery.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "samples/camerax-extensions/src/main/java/com/android/camerax/extensions/CameraXExtensionsController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 21,
+    "remote": "samples/camerax-takeaphoto/src/main/java/com/android/camerax/takeaphoto/CameraXTakeAPhotoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "samples/camerax-extensions/src/main/java/com/android/camerax/extensions/CameraXExtensionsController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 26,
+    "remote": "samples/camerax-takeaphoto/src/main/java/com/android/camerax/takeaphoto/CameraXTakeAPhotoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/InAppGallery.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-extensions/src/main/java/com/android/camerax/extensions/CameraXExtensionsController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-extensions/src/main/java/com/android/camerax/extensions/CameraXExtensionsController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombinationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombinationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombinationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombinationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombinationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-flipwhilerecording/src/main/java/com/android/camerax/flipwhilerecording/CameraXFlipWhileRecordingController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-flipwhilerecording/src/main/java/com/android/camerax/flipwhilerecording/CameraXFlipWhileRecordingController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-flipwhilerecording/src/main/java/com/android/camerax/flipwhilerecording/CameraXFlipWhileRecordingController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-flipwhilerecording/src/main/java/com/android/camerax/flipwhilerecording/CameraXFlipWhileRecordingController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-flipwhilerecording/src/main/java/com/android/camerax/flipwhilerecording/CameraXFlipWhileRecordingController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-hdrvideo/src/main/java/com/android/camerax/hdrvideo/CameraXHdrVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-hdrvideo/src/main/java/com/android/camerax/hdrvideo/CameraXHdrVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-hdrvideo/src/main/java/com/android/camerax/hdrvideo/CameraXHdrVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-hdrvideo/src/main/java/com/android/camerax/hdrvideo/CameraXHdrVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-hdrvideo/src/main/java/com/android/camerax/hdrvideo/CameraXHdrVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-slowmotion/src/main/java/com/android/camerax/slowmotion/CameraXSlowMotionController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-slowmotion/src/main/java/com/android/camerax/slowmotion/CameraXSlowMotionController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-slowmotion/src/main/java/com/android/camerax/slowmotion/CameraXSlowMotionController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-takeavideo/src/main/java/com/android/camerax/takeavideo/CameraXTakeAVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-takeavideo/src/main/java/com/android/camerax/takeavideo/CameraXTakeAVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-takeavideo/src/main/java/com/android/camerax/takeavideo/CameraXTakeAVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-takeavideo/src/main/java/com/android/camerax/takeavideo/CameraXTakeAVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-takeavideo/src/main/java/com/android/camerax/takeavideo/CameraXTakeAVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videopauseresume/src/main/java/com/android/camerax/videopauseresume/CameraXVideoPauseResumeController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videopauseresume/src/main/java/com/android/camerax/videopauseresume/CameraXVideoPauseResumeController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videopauseresume/src/main/java/com/android/camerax/videopauseresume/CameraXVideoPauseResumeController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videopauseresume/src/main/java/com/android/camerax/videopauseresume/CameraXVideoPauseResumeController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videopauseresume/src/main/java/com/android/camerax/videopauseresume/CameraXVideoPauseResumeController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videostabilization/src/main/java/com/android/camerax/videostabilization/CameraXVideoStabilizationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videostabilization/src/main/java/com/android/camerax/videostabilization/CameraXVideoStabilizationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videostabilization/src/main/java/com/android/camerax/videostabilization/CameraXVideoStabilizationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videostabilization/src/main/java/com/android/camerax/videostabilization/CameraXVideoStabilizationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-videostabilization/src/main/java/com/android/camerax/videostabilization/CameraXVideoStabilizationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraChrome.kt",
+    "localStart": 1,
+    "remote": "samples/camera2-rawcapture/src/main/java/com/android/camera2/rawcapture/Camera2RawEditor.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 22,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/scaffold/CameraSampleScaffold.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 27,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/scaffold/CameraSampleScaffold.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 31,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/scaffold/CameraSampleScaffold.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 10,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "camera-camera2/src/main/kotlin/dev/lunacam/camera/camera2/preview/Camera2PreviewController.kt",
+    "localStart": 6,
+    "remote": "app/src/main/java/com/android/camera/catalog/domain/SampleCatalog.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 29,
+    "remote": "samples/camerax-slowmotion/src/main/java/com/android/camerax/slowmotion/CameraXSlowMotionController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "feature-diagnostics/src/main/kotlin/dev/lunacam/feature/diagnostics/CapabilityExplorerScreen.kt",
+    "localStart": 1,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/overlay/SettingsOverlay.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 8,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/scaffold/CameraSampleScaffold.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 13,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/scaffold/CameraSampleScaffold.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/MainActivity.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 16,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/scaffold/CameraSampleScaffold.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "feature-camera/src/main/kotlin/dev/lunacam/feature/camera/PreviewScreen.kt",
+    "localStart": 14,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/scaffold/CameraSampleScaffold.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "feature-diagnostics/src/main/kotlin/dev/lunacam/feature/diagnostics/CapabilityExplorerScreen.kt",
+    "localStart": 3,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/overlay/FocusIndicator.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraController.kt",
+    "localStart": 16,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/MainActivity.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 22,
+    "remote": "samples/camerax-lowlightboost/src/main/java/com/android/camerax/lowlightboost/CameraXLowLightBoostController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonCameraScreen.kt",
+    "localStart": 22,
+    "remote": "samples/camerax-zoomandtorch/src/main/java/com/android/camerax/zoomandtorch/CameraXZoomAndTorchController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 27,
+    "remote": "samples/camerax-lowlightboost/src/main/java/com/android/camerax/lowlightboost/CameraXLowLightBoostController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/night/SerNightCameraScreen.kt",
+    "localStart": 27,
+    "remote": "samples/camerax-zoomandtorch/src/main/java/com/android/camerax/zoomandtorch/CameraXZoomAndTorchController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "app/src/main/java/app/grapheneos/camera/ui/activities/InAppGallery.kt",
+    "repository": "GrapheneCamera",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "samples/camerax-extensions/src/main/java/com/android/camerax/extensions/CameraXExtensionsController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "samples/camerax-featurecombination/src/main/java/com/android/camerax/featurecombination/CameraXFeatureCombinationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "samples/camerax-flipwhilerecording/src/main/java/com/android/camerax/flipwhilerecording/CameraXFlipWhileRecordingController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "samples/camerax-hdrvideo/src/main/java/com/android/camerax/hdrvideo/CameraXHdrVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 31,
+    "remote": "samples/camerax-lowlightboost/src/main/java/com/android/camerax/lowlightboost/CameraXLowLightBoostController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "samples/camerax-slowmotion/src/main/java/com/android/camerax/slowmotion/CameraXSlowMotionController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "samples/camerax-takeaphoto/src/main/java/com/android/camerax/takeaphoto/CameraXTakeAPhotoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "samples/camerax-takeavideo/src/main/java/com/android/camerax/takeavideo/CameraXTakeAVideoController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "samples/camerax-videopauseresume/src/main/java/com/android/camerax/videopauseresume/CameraXVideoPauseResumeController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 30,
+    "remote": "samples/camerax-videostabilization/src/main/java/com/android/camerax/videostabilization/CameraXVideoStabilizationController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/raw/RawCameraScreen.kt",
+    "localStart": 31,
+    "remote": "samples/camerax-zoomandtorch/src/main/java/com/android/camerax/zoomandtorch/CameraXZoomAndTorchController.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  },
+  {
+    "mode": "alpha",
+    "local": "app/src/main/kotlin/dev/lunacam/app/photon/PhotonViewfinderAssist.kt",
+    "localStart": 12,
+    "remote": "core-ui/src/main/java/com/android/camera/coreui/overlay/SettingsOverlay.kt",
+    "repository": "camera-samples",
+    "localOther": 0,
+    "remoteOther": 0,
+    "classification": "패키지·import 선언만 일치"
+  }
+]

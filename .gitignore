@@ -1,0 +1,36 @@
+.android-sdk/
+.gradle/
+.idea/
+.codex-remote-attachments/
+.kotlin/
+.toolchains/
+**/.cxx/
+**/build/
+build/
+local.properties
+*.iml
+/Lcam-*.zip
+/output/
+/tmp/
+/*.jpg
+/LUNA_PHOTON_Codex_Handoff_v1.pdf
+/LunaCam-capability-report*.json
+/Memory for ai and Human Worker.txt
+__pycache__/
+*.pyc
+
+# Android platform-tools were present in the workspace before this project.
+/adb.exe
+/AdbWinApi.dll
+/AdbWinUsbApi.dll
+/etc1tool.exe
+/fastboot.exe
+/hprof-conv.exe
+/libwinpthread-1.dll
+/make_f2fs.exe
+/make_f2fs_casefold.exe
+/mke2fs.exe
+/mke2fs.conf
+/NOTICE.txt
+/source.properties
+/sqlite3.exe
