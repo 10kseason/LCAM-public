@@ -33,11 +33,18 @@ JDK 17 이상과 Android SDK 플랫폼 36, Build Tools `36.0.0`, NDK `29.0.14206
 
 개발 APK는 `app/build/outputs/apk/debug/app-debug.apk`, 서명하지 않은 릴리스 APK는 `app/build/outputs/apk/release/app-release-unsigned.apk`에 생성됩니다. 개발 앱 ID는 `dev.lunacam.app.photon.debug`입니다. 릴리스 APK를 설치하려면 별도 서명이 필요합니다.
 
+## 진단 정보 최소화
+
+현재 소스의 진단 스키마 2는 모델 코드, 제조사, 기기 SDK, 펌웨어 식별값 및 파생 해시를 수집하거나 내보내지 않습니다. 카메라 기능과 오류 요약은 유지합니다. 기존 진단 디스크 캐시는 메모리 캐시로 대체하며, 앱 시작 시 이전 스키마의 앱 소유 진단 임시 파일만 정리합니다. 사용자가 저장한 사진과 리포트는 변경하지 않습니다.
+
+이 변경은 공개 소스 정리입니다. 이전 Git 커밋·태그와 이미 배포된 APK에는 소급 적용되지 않으며, 사진의 EXIF/DNG 메타데이터 처리는 별도입니다. [정리 범위](docs/DIAGNOSTIC_PRIVACY.md)를 확인하세요.
+
 ## 검사
 
 ```powershell
 .\gradlew.bat spotlessCheck :app:testDebugUnitTest p0JvmTest p1JvmTest p2JvmTest :app:lintDebug :app:lintRelease nativeSmokeTest --no-configuration-cache
 python -m unittest discover -s experiments/photon-night
+python tools/check_public_privacy.py
 ```
 
 네이티브 호스트 검사는 Windows에서 CMake와 Visual Studio 2022 C++ Build Tools, 다른 운영체제에서는 Ninja가 필요합니다. 호스트 CMake와 Android SDK CMake는 별도 설치 항목입니다. 기기 검사는 `:app:assembleDebugAndroidTest`로 빌드하며 실제 촬영을 수행하는 검사와 합성 입력만 사용하는 검사를 구분해서 실행해야 합니다. 세부 절차는 [유지보수 안내](docs/AI_MAINTENANCE.md)를 참조하세요.

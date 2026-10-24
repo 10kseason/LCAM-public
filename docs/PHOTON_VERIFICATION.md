@@ -22,7 +22,7 @@ CameraX가 세션 수명과 저장을 관리하며, 기존 RAW 연구 경로와 
 
 ## 실기기 근거
 
-실측 대상: Samsung SM-S938N, SDK 37. 진단 데이터에 기기 일련번호, 계정, 위치,
+실측 대상: Galaxy S25 Ultra. 진단 데이터에 기기 일련번호, 계정, 위치,
 파일 경로, 빌드 지문 또는 이미지 픽셀을 포함하지 않았다. 이전 9월 자료는 이번 결과로
 취급하지 않았다. 이번 실행의 원본 JSON과 로그는 `output/photon-v0.1/`에 있다.
 
@@ -56,7 +56,7 @@ physical ID가 있다는 사실은 각각을 별도 CameraX 렌즈로 열 수 �
 - 실제 기기 테스트 3개: capability, 렌즈 전환/복귀, 사용자 저장 JPEG 검사 모두 통과.
 - native host smoke: 1/1 통과.
 - Spotless, debug/release lint, debug/release APK: 성공. lint의 기존 SDK/버전 고정 관련
-  업데이트 경고는 남아 있다. SDK 37 기기에서 실행했지만 compile/target SDK는 기존 36 유지.
+  업데이트 경고는 남아 있다. 기기에서 실행했으며 compile/target SDK는 기존 36 유지.
 - APK는 arm64-v8a. debug는 개발 서명, release는 unsigned이며 공개 배포하지 않았다.
 
 최종 권한·APK 해시·설치 재검증은 `output/photon-v0.1/artifact-manifest.json`과

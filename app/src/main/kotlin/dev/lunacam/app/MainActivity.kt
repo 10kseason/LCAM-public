@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -28,6 +29,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // The old diagnostics are no longer reachable from navigation, so migrate at app startup.
+        if (LegacyDiagnosticCleanup.clear(filesDir, cacheDir) != 0) {
+            Log.w("LunaCamPrivacy", "Some legacy diagnostic cache files could not be removed")
+        }
         updatePermissionState()
         setContent {
             LunaCamApp(

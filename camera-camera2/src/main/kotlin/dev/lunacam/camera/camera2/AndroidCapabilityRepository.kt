@@ -4,11 +4,8 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.hardware.camera2.CameraManager
-import android.os.Build
 import dev.lunacam.domain.capability.CAPABILITY_REPORT_SCHEMA_VERSION
 import dev.lunacam.domain.capability.CameraRoleScorer
-import dev.lunacam.domain.capability.CapabilityCacheKey
-import dev.lunacam.domain.capability.CapabilityDeviceSummary
 import dev.lunacam.domain.capability.CapabilityReport
 import dev.lunacam.domain.capability.CapabilityReportRenderer
 import dev.lunacam.domain.capability.CapabilityReportSource
@@ -21,16 +18,12 @@ class AndroidCapabilityRepository(context: Context) : CapabilityRepository {
     private val cameraManager = applicationContext.getSystemService(CameraManager::class.java)
     private val collector = CameraCharacteristicsCollector()
     private val renderer = CapabilityReportRenderer()
-    private val cache = CapabilityDocumentCache(applicationContext.filesDir)
+
+    // Keep fallback data only within this repository lifetime; never identify firmware to cache it.
+    private var lastSnapshot: CapabilitySnapshot? = null
 
     override fun loadCached(): CapabilitySnapshot? =
-        cache.read(currentCacheKey())?.let { documents ->
-            CapabilitySnapshot(
-                report = null,
-                documents = documents,
-                source = CapabilityReportSource.CACHE
-            )
-        }
+        lastSnapshot?.copy(source = CapabilityReportSource.CACHE)
 
     override fun refresh(): CapabilitySnapshot {
         check(
@@ -40,36 +33,17 @@ class AndroidCapabilityRepository(context: Context) : CapabilityRepository {
             "Camera permission is required before capability discovery"
         }
 
-        val cacheKey = currentCacheKey()
         val report =
             CapabilityReport(
                 schemaVersion = CAPABILITY_REPORT_SCHEMA_VERSION,
                 createdAtUtc = Instant.now().toString(),
-                cacheKeyHash = cacheKey,
-                device =
-                CapabilityDeviceSummary(
-                    manufacturer = Build.MANUFACTURER.orUnknown(),
-                    model = Build.MODEL.orUnknown(),
-                    sdkInt = Build.VERSION.SDK_INT,
-                    buildFingerprintHash = CapabilityCacheKey.fingerprintHash(Build.FINGERPRINT)
-                ),
                 cameras = CameraRoleScorer.assignRoles(collector.collect(cameraManager))
             )
         val documents = renderer.render(report)
-        cache.write(cacheKey, documents)
         return CapabilitySnapshot(
             report = report,
             documents = documents,
             source = CapabilityReportSource.LIVE
-        )
+        ).also { lastSnapshot = it }
     }
-
-    private fun currentCacheKey(): String = CapabilityCacheKey.create(
-        schemaVersion = CAPABILITY_REPORT_SCHEMA_VERSION,
-        sdkInt = Build.VERSION.SDK_INT,
-        buildFingerprint = Build.FINGERPRINT
-    )
-
-    private fun String?.orUnknown(): String =
-        this?.trim().takeUnless { it.isNullOrEmpty() } ?: "unknown"
 }

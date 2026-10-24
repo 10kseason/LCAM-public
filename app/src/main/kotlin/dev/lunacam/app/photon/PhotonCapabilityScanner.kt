@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.graphics.ImageFormat
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
-import android.os.Build
 import androidx.camera.camera2.interop.Camera2CameraInfo
 import androidx.camera.camera2.interop.ExperimentalCamera2Interop
 import androidx.camera.extensions.ExtensionMode
@@ -90,16 +89,7 @@ class PhotonCapabilityScanner(context: Context) {
         } catch (error: Exception) {
             addProbeError(errors, null, "extensions", error.javaClass.simpleName)
         }
-        return JSONObject()
-            .put("schemaVersion", 1)
-            .put("createdAtUtc", Instant.now().toString())
-            .put(
-                "device",
-                JSONObject().put("manufacturer", Build.MANUFACTURER)
-                    .put("model", Build.MODEL).put("sdk", Build.VERSION.SDK_INT)
-            )
-            .put("cameras", cameras)
-            .put("probeErrors", errors)
+        return photonCapabilityReport(Instant.now().toString(), cameras, errors)
     }
 
     private fun readCamera(id: String, c: CameraCharacteristics?, errors: JSONArray): JSONObject {

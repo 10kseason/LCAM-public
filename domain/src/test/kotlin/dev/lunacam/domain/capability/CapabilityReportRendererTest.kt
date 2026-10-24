@@ -6,20 +6,11 @@ import org.junit.Test
 
 class CapabilityReportRendererTest {
     @Test
-    fun `renders nullable metadata without leaking the raw build fingerprint`() {
-        val rawFingerprint = "samsung/device/private-build-fingerprint"
+    fun `renders useful camera metadata without device identifiers`() {
         val report =
             CapabilityReport(
                 schemaVersion = CAPABILITY_REPORT_SCHEMA_VERSION,
                 createdAtUtc = "2026-09-02T00:00:00Z",
-                cacheKeyHash = CapabilityCacheKey.create(1, 36, rawFingerprint),
-                device =
-                CapabilityDeviceSummary(
-                    manufacturer = "samsung",
-                    model = "SM-S938N",
-                    sdkInt = 36,
-                    buildFingerprintHash = CapabilityCacheKey.fingerprintHash(rawFingerprint)
-                ),
                 cameras =
                 CameraRoleScorer.assignRoles(
                     listOf(
@@ -63,17 +54,21 @@ class CapabilityReportRendererTest {
         assertTrue(documents.json.contains("\\n\\\"line two\\\""))
         assertTrue(documents.json.contains("\"sensorWidthMm\": null"))
         assertTrue(documents.markdown.contains("Privacy:"))
-        assertFalse(documents.json.contains(rawFingerprint))
-        assertFalse(documents.markdown.contains(rawFingerprint))
+        for (field in listOf(
+            "device",
+            "model",
+            "manufacturer",
+            "sdkInt",
+            "buildFingerprintHash",
+            "cacheKeyHash"
+        )) {
+            assertFalse(documents.json.contains("\"$field\""))
+        }
+        assertFalse(documents.markdown.contains("Device:"))
+        assertFalse(documents.markdown.contains("Android SDK:"))
+        assertFalse(documents.markdown.contains("Build fingerprint hash:"))
+        assertTrue(documents.json.contains("\"RAW\""))
+        assertTrue(documents.json.contains("\"schemaVersion\": 2"))
         assertFalse(documents.json.contains("Android ID", ignoreCase = true))
-    }
-
-    @Test
-    fun `cache key changes when schema sdk or fingerprint changes`() {
-        val baseline = CapabilityCacheKey.create(1, 36, "fingerprint-a")
-
-        assertTrue(baseline != CapabilityCacheKey.create(2, 36, "fingerprint-a"))
-        assertTrue(baseline != CapabilityCacheKey.create(1, 35, "fingerprint-a"))
-        assertTrue(baseline != CapabilityCacheKey.create(1, 36, "fingerprint-b"))
     }
 }

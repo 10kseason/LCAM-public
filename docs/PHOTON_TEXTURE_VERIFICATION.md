@@ -52,7 +52,7 @@
 | JVM | 고유 테스트 112개, 실패/오류 0 | `jvm-results.json` 및 Gradle XML |
 | debug/release 빌드 | 성공 | `final-gates.log` |
 | debug/release lint | 각각 오류 0, 경고 13 | 보관한 lint 텍스트; SDK/도구/라이브러리 갱신 권고 |
-| 실기기 | SM-S938N, SDK 37, 자동 검사 6개 통과 | `device-tests-final.log` |
+| 실기기 | Galaxy S25 Ultra, 자동 검사 6개 통과 | `device-tests-final.log` |
 | 핀치 | 1× → 약 2.94× → 약 0.85× | `photon-pinch-verification-final.json` |
 | 초점 탭 | 핀치 뒤 0회, 독립 단일 탭 1회 | 동일 JSON; 실제 손가락 대신 MotionEvent 주입 |
 | 설정 | OFF/ON 저장 확인 후 초기값 복원 | 실기기 테스트 |

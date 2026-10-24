@@ -214,21 +214,11 @@ Samsung의 공개 사양에는 후면 200MP wide, 50MP ultra-wide, 50MP 5× tele
 
 ### 3.4 Capability cache 무효화
 
-정적·동적 probe 결과는 다음 튜플로 키를 만든다.
-
-```text
-CapabilityCacheKey =
-    Build.MANUFACTURER +
-    Build.MODEL +
-    Build.DEVICE +
-    Build.FINGERPRINT +
-    cameraId +
-    appCapabilitySchemaVersion
-```
+진단 결과는 저장소 인스턴스의 메모리에서만 재사용한다. 기기·펌웨어 식별값으로 키를 만들거나 디스크에 진단 캐시를 저장하지 않는다. 앱을 다시 시작하면 새로 조회한다.
 
 다음 상황에는 dynamic probe를 다시 수행한다.
 
-- OS/펌웨어 fingerprint 변경
+- 앱 또는 진단 저장소 인스턴스 재시작
 - 앱 capability schema 변경
 - 사용자가 진단 화면에서 “다시 검사” 선택
 - 이전 결과가 `TRANSIENT_FAILURE`
@@ -674,7 +664,7 @@ Streams
 5. 실제 preview+RAW 세션 성공 가산
 6. 초광각 또는 긴 망원으로 보이는 focal length 감점
 
-동점이거나 확신이 낮으면 진단 화면에서 사용자가 후보를 선택할 수 있게 한다. 선택값은 fingerprint별로 저장한다. camera ID 문자열 자체를 렌즈 이름으로 사용자에게 노출하지 않는다.
+동점이거나 확신이 낮으면 진단 화면에서 사용자가 후보를 선택할 수 있게 한다. 선택값은 현재 진단 세션에서만 유지한다. camera ID 문자열 자체를 렌즈 이름으로 사용자에게 노출하지 않는다.
 
 ### 8.3 RAW 크기 선택
 
@@ -724,14 +714,8 @@ P2 구현에서 1~3단계는 `PreviewSizeTier`(`FULL_HD` → `HD` → `SMALLEST`
 
 ```json
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "createdAtUtc": "2026-09-01T00:00:00Z",
-  "device": {
-    "manufacturer": "samsung",
-    "model": "redacted-or-model",
-    "sdkInt": 36,
-    "buildFingerprintHash": "sha256-prefix"
-  },
   "cameras": [
     {
       "cameraId": "local-session-id",
@@ -749,7 +733,7 @@ P2 구현에서 1~3단계는 `PreviewSizeTier`(`FULL_HD` → `HD` → `SMALLEST`
 }
 ```
 
-`buildFingerprint` 원문은 공유 리포트에서 hash prefix로 줄인다. 로컬 cache key에는 원문을 사용할 수 있다.
+진단 스키마 2는 기기 요약과 기기에서 파생한 캐시 키를 포함하지 않는다. 모델 코드, 제조사, 기기 SDK, 펌웨어 식별값과 그 해시를 수집·내보내지 않는다.
 
 ---
 
@@ -1508,8 +1492,7 @@ CPU와 Vulkan이 완전히 별도 알고리즘으로 갈라지지 않도록 conf
 - 최대 저장 버퍼 범위·작업 그룹 크기·공유 메모리
 - shaderFloat16/int16 등 선택 기능
 - external memory/AHardwareBuffer 확장(선택)
-- 기기·드라이버 식별 해시
-- known bad driver denylist 또는 runtime self-test
+- 기기 식별값을 수집하지 않는 runtime self-test
 
 필수 기능이 없으면 CPU만 활성화한다. Vulkan 1.1을 지원한다는 사실만으로 RAW_SENSOR AHardwareBuffer import 가능성을 보장하지 않는다.
 
@@ -1996,7 +1979,7 @@ Android는 `JPEG_R`과 gain map 기반 Ultra HDR을 지원한다. v0.9에서 다
 
 - 이미지 pixel 또는 thumbnail
 - GPS
-- 전체 build fingerprint
+- 모델 코드·펌웨어 식별값과 그 해시·시험 기기의 OS/SDK 정보
 - Android ID·광고 ID·일련번호
 - 사용자 계정/파일 system 절대 경로
 - MediaStore URI 원문을 export report에 그대로 포함
@@ -2140,7 +2123,7 @@ SIGSEGV/SIGABRT는 Kotlin exception으로 복구할 수 있다고 가정하지 �
 | ID | 상황 | 탐지 | 예상 동작 |
 |---|---|---|---|
 | E-OEM-01 | camera ID가 `0`이 아님 | enumeration | role scoring 사용 |
-| E-OEM-02 | firmware 후 camera ID 변경 | fingerprint cache miss | 재probe |
+| E-OEM-02 | firmware 후 camera ID 변경 | 새 진단 세션에서 다시 조회 | 재probe |
 | E-OEM-03 | logical camera만 RAW 지원 | characteristics | logical profile 사용 |
 | E-OEM-04 | physical IDs는 보이나 직접 open 불가 | open/probe | logical output config만 시도 |
 | E-OEM-05 | 5×가 JPEG만 지원 | format map | RAW 기능 숨김, 가짜 5× RAW 금지 |
@@ -2513,11 +2496,10 @@ Fake는 callback delay, out-of-order, duplicate, disconnect를 scripted event로
 
 ### 20.10 S25 Ultra 실기기 기능 매트릭스
 
-최소 각 펌웨어에서 기록:
+기기 재검증 시 다음을 기록하되, 제품명 외의 기기 식별 정보는 제외한다:
 
 ```text
-Device model / region / firmware fingerprint hash
-Android SDK
+Device product name only
 camera IDs and role mapping
 RAW sizes/formats
 preview+RAW valid profiles

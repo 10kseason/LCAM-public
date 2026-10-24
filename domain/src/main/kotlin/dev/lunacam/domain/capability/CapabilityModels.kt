@@ -1,6 +1,6 @@
 package dev.lunacam.domain.capability
 
-const val CAPABILITY_REPORT_SCHEMA_VERSION = 1
+const val CAPABILITY_REPORT_SCHEMA_VERSION = 2
 
 enum class LensFacing {
     BACK,
@@ -109,18 +109,9 @@ data class CameraCapabilityProfile(
     val readErrors: List<String>
 )
 
-data class CapabilityDeviceSummary(
-    val manufacturer: String,
-    val model: String,
-    val sdkInt: Int,
-    val buildFingerprintHash: String
-)
-
 data class CapabilityReport(
     val schemaVersion: Int,
     val createdAtUtc: String,
-    val cacheKeyHash: String,
-    val device: CapabilityDeviceSummary,
     val cameras: List<CameraCapabilityProfile>
 )
 

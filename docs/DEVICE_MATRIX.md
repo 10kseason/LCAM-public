@@ -5,15 +5,11 @@ P1~P3는 초기 개발 단계의 역사적 기록입니다. 당시 진단 화면
 
 ## Galaxy S25 Ultra — P1 기능 탐색기
 
-원본 내보내기: `LunaCam-capability-report (1).json`, `createdAtUtc 2026-09-21T00:45:10Z`,
-`cacheKeyHash 4c7666677464a946924af9f879a0e5bac386d359c36dc05b0588662d4d799626`.
+원본 내보내기: `LunaCam-capability-report (1).json`, 2026-09-21 내보내기.
 `[DEVICE-VERIFY]`는 해당 보고서에서 아직 확인하지 못한 항목입니다.
 
 | 항목 | 확인한 값 | 근거 |
 | --- | --- | --- |
-| 모델 / 지역 | `SM-S938N`(`N`은 한국 내수 모델을 뜻하며 시험자의 지역은 별도 기록하지 않음) | P1 보고서 `device.model`, 2026-09-21 내보내기 |
-| Android SDK | `37`. 고정한 `compileSdk 36` / `targetSdk 36` 기준보다 한 단계 높음 | `device.sdkInt` |
-| 펌웨어 지문 해시 | `3c87c63fa35a5e31` | `device.buildFingerprintHash` |
 | 카메라 후보 수 | `4`: `camera-0` BACK_WIDE(LEVEL_3), `camera-1` FRONT(FULL), `camera-2` BACK_ULTRAWIDE(LIMITED), `camera-3` FRONT(FULL). 망원은 별도 열거되지 않고 3x/5x 렌즈는 `camera-0`의 물리 하위 카메라로 제공됨 | `cameras.length` |
 | 후면 주 카메라 별칭 | `camera-0`, 역할 `BACK_WIDE`, 점수 `203`, 신뢰도 `HIGH`. RAW 지원, 논리 다중 카메라, 35mm 환산 23.2mm, 센서 너비 9.79mm가 근거 | 근거를 포함한 최고 `BACK_WIDE` 점수 |
 | 주 카메라의 물리 카메라 별칭 | `camera-2`, `physical-0`, `physical-1`, `physical-2` | 선택 후보 `physicalCameraAliases` |
@@ -44,7 +40,7 @@ P1~P3는 초기 개발 단계의 역사적 기록입니다. 당시 진단 화면
 3. 한 번 거부한 뒤 빈 프리뷰나 반복 권한 요청 없이 이유 설명이 나오는지 확인합니다.
 4. 카메라 권한을 허용하고 모든 후보 카드가 로드될 때까지 기다립니다.
 5. 시스템 문서 선택기로 JSON과 Markdown을 모두 저장합니다.
-6. Android ID, 계정, 위치, 로컬 경로, 이미지 픽셀, 원시 빌드 지문이 내보낸 파일에 없는지 확인합니다.
+6. 기기 식별 정보, 계정, 위치, 로컬 경로, 이미지 픽셀이 내보낸 파일에 없는지 확인합니다.
 7. 확인한 값을 위 표에 옮기고 보고서 해시를 시험 기록에 첨부합니다.
 
 P2 프리뷰·세션 성공과 P3 RAW 영상·결과 연결은 이 P1 표의 범위 밖입니다.

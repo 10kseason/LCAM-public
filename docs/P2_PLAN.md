@@ -237,7 +237,7 @@
 
 ## 10. 실기기 1차 테스트 후 수정 (2026-09-21, 0.3.1-p2)
 
-S25 Ultra(SM-S938N, sdkInt 37)에서 프리뷰 표시는 성공. P1 capability 리포트를 코드와 대조해
+Galaxy S25 Ultra에서 프리뷰 표시는 성공. P1 capability 리포트를 코드와 대조해
 결함 2건을 찾아 같은 날 수정했다. 상세는 `docs/DEVICE_MATRIX.md`의 "P2 defects" 절.
 
 | 결함 | 내용 | 수정 |

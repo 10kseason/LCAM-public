@@ -13,6 +13,7 @@ import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,7 +29,8 @@ class PhotonDeviceTest {
             context.checkSelfPermission(Manifest.permission.CAMERA)
         )
         val report = PhotonCapabilityScanner(context).scan()
-        assertEquals(1, report.getInt("schemaVersion"))
+        assertEquals(2, report.getInt("schemaVersion"))
+        assertFalse(report.has("device"))
         val cameras = report.getJSONArray("cameras")
         assertTrue(cameras.length() > 0)
         for (index in 0 until cameras.length()) {

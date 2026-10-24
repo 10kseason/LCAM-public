@@ -10,17 +10,6 @@ class CapabilityReportRenderer {
         listOf(
             "schemaVersion" to JsonValue.NumberValue(schemaVersion.toString()),
             "createdAtUtc" to JsonValue.StringValue(createdAtUtc),
-            "cacheKeyHash" to JsonValue.StringValue(cacheKeyHash),
-            "device" to
-                JsonValue.ObjectValue(
-                    listOf(
-                        "manufacturer" to JsonValue.StringValue(device.manufacturer),
-                        "model" to JsonValue.StringValue(device.model),
-                        "sdkInt" to JsonValue.NumberValue(device.sdkInt.toString()),
-                        "buildFingerprintHash" to
-                            JsonValue.StringValue(device.buildFingerprintHash)
-                    )
-                ),
             "cameras" to JsonValue.ArrayValue(cameras.map { it.toJsonValue() })
         )
     )
@@ -133,9 +122,6 @@ class CapabilityReportRenderer {
         appendLine()
         appendLine("- Schema: ${report.schemaVersion}")
         appendLine("- Created UTC: ${report.createdAtUtc}")
-        appendLine("- Device: ${report.device.manufacturer} ${report.device.model}")
-        appendLine("- Android SDK: ${report.device.sdkInt}")
-        appendLine("- Build fingerprint hash: `${report.device.buildFingerprintHash}`")
         appendLine("- Camera candidates: ${report.cameras.size}")
         appendLine()
         appendLine(

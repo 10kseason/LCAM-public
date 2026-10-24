@@ -5,7 +5,6 @@ import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
 import android.hardware.camera2.CaptureRequest
 import android.hardware.camera2.params.StreamConfigurationMap
-import android.os.Build
 import android.util.Size
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -93,9 +92,8 @@ class PhotonResolutionMetadataDeviceTest {
                     )
                 )
         }
-        val report = JSONObject().put("schemaVersion", 1)
+        val report = JSONObject().put("schemaVersion", 2)
             .put("createdAtUtc", Instant.now().toString())
-            .put("device", JSONObject().put("model", Build.MODEL).put("sdk", Build.VERSION.SDK_INT))
             .put("cameras", cameras).put("errors", errors)
             .put("cameraOpened", false).put("photosCaptured", 0).put("pixelsRead", false)
         File(context.filesDir, "photon-resolution-metadata.json").writeText(report.toString(2))

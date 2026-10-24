@@ -86,7 +86,7 @@ class PhotonDiagnosticsModel(application: Application) : AndroidViewModel(applic
                     checkNotNull(context.contentResolver.openOutputStream(uri, "wt"))
                         .bufferedWriter(Charsets.UTF_8).use { it.write(content) }
                 }
-                message = "capabilities-v1.json 저장 완료"
+                message = "capabilities-v2.json 저장 완료"
             } catch (error: CancellationException) {
                 throw error
             } catch (_: Exception) {
@@ -107,7 +107,7 @@ class PhotonDiagnosticsModel(application: Application) : AndroidViewModel(applic
                             it.lastModified() < System.currentTimeMillis() - 86_400_000
                     }
                         ?.forEach { it.delete() }
-                    val file = File(directory, "capabilities-v1-${UUID.randomUUID()}.json")
+                    val file = File(directory, "capabilities-v2-${UUID.randomUUID()}.json")
                     file.writeText(content, Charsets.UTF_8)
                     FileProvider.getUriForFile(
                         context,
@@ -117,7 +117,7 @@ class PhotonDiagnosticsModel(application: Application) : AndroidViewModel(applic
                 }
                 val intent = Intent(Intent.ACTION_SEND).setType("application/json")
                     .putExtra(Intent.EXTRA_STREAM, uri)
-                    .apply { clipData = ClipData.newRawUri("capabilities-v1", uri) }
+                    .apply { clipData = ClipData.newRawUri("capabilities-v2", uri) }
                     .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 onReady(Intent.createChooser(intent, "진단 JSON 공유"))
             } catch (error: CancellationException) {
@@ -160,7 +160,7 @@ fun PhotonDiagnosticsScreen(onBack: () -> Unit, model: PhotonDiagnosticsModel = 
                     Button(
                         onClick = {
                             model.prepareExport()
-                            launcher.launch("capabilities-v1.json")
+                            launcher.launch("capabilities-v2.json")
                         },
                         enabled =
                         model.json != null && !model.busy
