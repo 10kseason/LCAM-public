@@ -16,9 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -117,60 +115,34 @@ fun PhotonCameraScreen(
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
             val landscape =
                 LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
-            Column(Modifier.fillMaxSize().safeDrawingPadding()) {
-                CameraHeader(controller, onBack, { showExposure = !showExposure }) {
-                    showOptions = true
-                }
-                PhotonCameraModeBar("AUTO", null, onRawAuto, onRaw, onNight, !controller.saving)
-                if (landscape) {
-                    Row(Modifier.weight(1f).fillMaxWidth()) {
-                        Column(Modifier.weight(1f).fillMaxSize()) {
-                            CameraRatios(controller)
-                            CameraViewfinder(
-                                controller,
-                                view,
-                                true,
-                                showExposure,
-                                { showExposure = false },
-                                Modifier.weight(1f).fillMaxWidth()
-                            )
-                            CameraLenses(controller)
-                        }
-                        Column(
-                            Modifier.width(112.dp).fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
-                        ) {
-                            PhotonRecentPhotoButton(
-                                controller.recentPhotoUri,
-                                viewer,
-                                Modifier.size(56.dp)
-                            )
-                            CameraShutter(controller) { controller.takePhoto(owner) }
-                        }
-                    }
-                } else {
-                    CameraRatios(controller)
+            PhotonCameraLayout(
+                landscape = landscape,
+                preview = { modifier ->
                     CameraViewfinder(
                         controller,
                         view,
-                        false,
+                        landscape,
                         showExposure,
                         { showExposure = false },
-                        Modifier.weight(1f).fillMaxWidth()
+                        modifier
                     )
-                    CameraLenses(controller)
-                    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                        PhotonRecentPhotoButton(
-                            controller.recentPhotoUri,
-                            viewer,
-                            Modifier.align(Alignment.CenterStart).padding(start = 24.dp).size(64.dp)
-                        )
-                        CameraShutter(controller) { controller.takePhoto(owner) }
+                },
+                modes = {
+                    PhotonCameraModeBar("AUTO", null, onRawAuto, onRaw, onNight, !controller.saving)
+                },
+                controls = {
+                    CameraHeader(controller, onBack, { showExposure = !showExposure }) {
+                        showOptions = true
                     }
-                }
-                CameraStatus(controller)
-            }
+                    CameraLenses(controller)
+                    CameraRatios(controller)
+                    CameraStatus(controller)
+                },
+                recent = {
+                    PhotonRecentPhotoButton(controller.recentPhotoUri, viewer, Modifier.size(48.dp))
+                },
+                shutter = { CameraShutter(controller) { controller.takePhoto(owner) } }
+            )
             if (showOptions) {
                 CameraOptions(controller, viewer, onNight, onRaw, onRawAuto) {
                     showOptions = false
@@ -187,33 +159,34 @@ private fun CameraHeader(
     onExposure: () -> Unit,
     onOptions: () -> Unit
 ) {
-    Row(
-        Modifier.fillMaxWidth().padding(horizontal = 4.dp),
-        verticalAlignment = Alignment.CenterVertically
+    Column(
+        Modifier.fillMaxWidth().padding(horizontal = 4.dp)
     ) {
-        TextButton(onClick = onBack, enabled = !controller.saving) { Text("닫기") }
         Text(
             "AUTO",
-            Modifier.weight(1f).padding(horizontal = 8.dp).semantics {
+            Modifier.padding(horizontal = 8.dp).semantics {
                 contentDescription = "현재 모드 AUTO"
             },
             style = MaterialTheme.typography.titleMedium,
             maxLines = 1
         )
-        if (!controller.ready) {
-            TextButton(onClick = controller::retry, enabled = !controller.saving) {
-                Text("재연결")
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
+            TextButton(onClick = onBack, enabled = !controller.saving) { Text("닫기") }
+            if (!controller.ready) {
+                TextButton(onClick = controller::retry, enabled = !controller.saving) {
+                    Text("재연결")
+                }
             }
+            TextButton(
+                onClick = onExposure,
+                enabled = controller.supportsExposure && !controller.saving,
+                modifier = Modifier.semantics { contentDescription = "밝기 조절" }
+            ) { Text("EV") }
+            TextButton(
+                onClick = onOptions,
+                modifier = Modifier.semantics { contentDescription = "보정 설정" }
+            ) { Text("보정 설정") }
         }
-        TextButton(
-            onClick = onExposure,
-            enabled = controller.supportsExposure && !controller.saving,
-            modifier = Modifier.semantics { contentDescription = "밝기 조절" }
-        ) { Text("EV") }
-        TextButton(
-            onClick = onOptions,
-            modifier = Modifier.semantics { contentDescription = "보정 설정" }
-        ) { Text("보정 설정") }
     }
 }
 

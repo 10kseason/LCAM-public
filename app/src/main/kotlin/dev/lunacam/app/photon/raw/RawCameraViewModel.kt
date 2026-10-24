@@ -13,6 +13,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dev.lunacam.app.photon.PhotonAspectRatio
 import dev.lunacam.app.photon.PhotonProcessingGate
+import dev.lunacam.app.photon.PhotonShutterSound
 import dev.lunacam.app.photon.loadRecentRawPhoto
 import dev.lunacam.app.photon.rawauto.RawAutoPhotoStore
 import dev.lunacam.app.photon.rawauto.rawAutoCompensationBias
@@ -474,6 +475,10 @@ class RawCameraViewModel(application: Application, val naturalAuto: Boolean) :
     fun capture(rotation: Int) {
         val active = camera ?: return
         if (!canCapture) return
+        if (!shutterSound.play()) {
+            message = "셔터음을 준비하지 못했습니다. 촬영을 다시 시도해 주세요."
+            return
+        }
         val merge = mergeEnabled && !naturalAuto
         val hdr = naturalAuto && hdrEnabled
         val toneStrength = shadowStrength
@@ -632,7 +637,10 @@ class RawCameraViewModel(application: Application, val naturalAuto: Boolean) :
         camera = null
     }
 
+    private val shutterSound = PhotonShutterSound()
+
     override fun onCleared() {
+        shutterSound.close()
         closeCamera()
     }
 

@@ -4,6 +4,7 @@
 #include <cmath>
 #include <iostream>
 #include <limits>
+#include <random>
 #include <stdexcept>
 #include <vector>
 
@@ -67,19 +68,25 @@ void brackets_and_precision(bool shifted) {
     expect(f.stats.merged_pixels > 1000, "no actual HDR fusion");
     if (shifted) expect(f.stats.shifts == std::array<int, 6>{4, -2, 0, 0, -2, 4},
                         "CFA translation mismatch");
-    double before = 0, after = 0;
+    double before = 0, after = 0, short_error = 0;
     int sub_dn = 0;
     for (int y = 80; y < 110; ++y) for (int x = 100; x < 150; ++x) {
         const int p = y * w + x, c = y % 2 * 2 + x % 2;
         const auto& m = f.frames[1].metadata;
         const double truth = scene(x, y, c) * .25;
-        before += std::pow(f.reference(p) / 65535.0 - truth, 2);
+        const auto& metered = f.frames[0].metadata;
+        const int metered_p = (y + f.stats.shifts[1]) * w + x + f.stats.shifts[0];
+        const double single = (f.storage[0][metered_p] - metered.black[c]) /
+            (metered.white - metered.black[c]) * .25;
+        before += std::pow(single - truth, 2);
+        short_error += std::pow(f.reference(p) / 65535.0 - truth, 2);
         after += std::pow(f.output[p] / 65535.0 - truth, 2);
         const double dn = f.output[p] / 65535.0 * (m.white - m.black[c]) + m.black[c];
         if (std::abs(dn - std::round(dn)) > .1) ++sub_dn;
     }
-    std::cout << "HDR shadow MSE ratio=" << after / before << " sub-DN=" << sub_dn << '\n';
-    expect(after < before * .5, "long exposure did not improve short-frame shadow noise");
+    std::cout << "HDR 12% MSE/metered=" << after / before
+              << " MSE/short=" << after / short_error << " sub-DN=" << sub_dn << '\n';
+    expect(after < before * .5, "long exposure did not improve metered-frame shadow noise");
     expect(sub_dn > 500, "packing lost sub-DN shadow precision");
     for (int x = 0; x < w; ++x) expect(f.output[x] == f.reference(x), "border changed");
     for (auto value : f.output) expect(value <= 65535, "Night lift bits contaminated");
@@ -109,6 +116,64 @@ void moving_and_clipped_regions() {
     expect(f.output[140 * w + 130] > f.output[140 * w + 110], "sky gradient disappeared");
 }
 
+void deep_shadows_against_metered_single() {
+    // Static textured surroundings make registration observable. Measure only the interiors
+    // of 1--6% metered-light patches, not the old 12% patch or the noisy short reference.
+    constexpr std::array<double, 4> levels{.01, .016, .03, .06};
+    constexpr std::array<double, 3> slopes{.00002, .00012, .0005};
+    constexpr std::array<double, 3> intercepts{.000001, .000004, .000016};
+    bool improved = true;
+    for (int profile = 0; profile < 3; ++profile) {
+        std::array<double, 4> single_mse{}, hdr_mse{}, short_mse{};
+        for (int trial = 0; trial < 6; ++trial) {
+            Fixture f;
+            std::mt19937 random(1700 + profile * 100 + trial);
+            std::normal_distribution<double> gaussian(0, 1);
+            for (int k = 0; k < 3; ++k) {
+                auto& m = f.frames[k].metadata;
+                m.slope.fill(slopes[profile]);
+                m.intercept.fill(intercepts[profile]);
+                for (int y = 0; y < h; ++y) for (int x = 0; x < w; ++x) {
+                    const int c = y % 2 * 2 + x % 2;
+                    const bool patch = x >= 80 && x < 176 && y >= 64 && y < 128;
+                    const double light = patch ? levels[(x - 80) / 24] : scene(x, y, c);
+                    const double exposed = light * m.exposure;
+                    const double noisy = exposed + gaussian(random) *
+                        std::sqrt(m.slope[c] * exposed + m.intercept[c]);
+                    f.storage[k][y * w + x] = static_cast<std::uint16_t>(std::lround(
+                        std::clamp(m.black[c] + noisy * (m.white - m.black[c]), 0.0, m.white)));
+                }
+            }
+            const auto original = f.storage;
+            f.run();
+            expect(f.stats.accepted_mask == 7 &&
+                   f.stats.shifts == std::array<int, 6>{}, "static noisy bracket not registered");
+            for (int band = 0; band < 4; ++band) {
+                for (int y = 72; y < 120; ++y) for (int x = 86 + band * 24; x < 98 + band * 24; ++x) {
+                    const int p = y * w + x, c = y % 2 * 2 + x % 2;
+                    const auto& m = f.frames[0].metadata;
+                    const double single = std::max(0.0,
+                        (f.storage[0][p] - m.black[c]) / (m.white - m.black[c]));
+                    const double hdr = f.output[p] / 65535.0 / f.frames[1].metadata.exposure;
+                    const double shortest = f.reference(p) / 65535.0 / f.frames[1].metadata.exposure;
+                    single_mse[band] += std::pow(single - levels[band], 2);
+                    hdr_mse[band] += std::pow(hdr - levels[band], 2);
+                    short_mse[band] += std::pow(shortest - levels[band], 2);
+                }
+            }
+            expect(original == f.storage, "HDR mutated noisy source frames");
+        }
+        for (int band = 0; band < 4; ++band) {
+            const double ratio = hdr_mse[band] / single_mse[band];
+            std::cout << "Deep shadow profile=" << profile << " metered=" << levels[band]
+                      << " HDR/metered MSE=" << ratio << " RMSE=" << std::sqrt(ratio)
+                      << " short/metered MSE=" << short_mse[band] / single_mse[band] << '\n';
+            improved = improved && ratio < .6;
+        }
+    }
+    expect(improved, "HDR deep shadows must beat the metered single, not just the short reference");
+}
+
 void flat_fallback_and_roi() {
     Fixture f;
     for (int k = 0; k < 3; ++k) for (int y = 0; y < h; ++y) for (int x = 0; x < w; ++x) {
@@ -125,6 +190,19 @@ void flat_fallback_and_roi() {
                                 {20, 20, w - 20, h - 20}), "valid ROI rejected");
     for (int y = 0; y < 20; ++y) for (int x = 0; x < w; ++x)
         expect(roi.output[y * w + x] == roi.reference(y * w + x), "outside ROI modified");
+}
+
+void sensor_code_zero_is_still_rejected() {
+    Fixture f;
+    // Removing the black-level floor must not admit a sensor-code-clipped candidate.
+    for (int y = 80; y < 110; ++y) for (int x = 100; x < 145; ++x) {
+        f.storage[0][y * w + x] = 0;
+        f.storage[2][y * w + x] = 0;
+    }
+    f.run();
+    expect(f.stats.accepted_mask == 7, "zero patch destroyed static registration");
+    for (int y = 85; y < 105; ++y) for (int x = 105; x < 135; ++x)
+        expect(f.output[y * w + x] == f.reference(y * w + x), "zero-clipped samples contributed");
 }
 
 void invalid_metadata_is_atomic() {
@@ -158,7 +236,9 @@ int main() {
         brackets_and_precision(true);
         moving_and_clipped_regions();
         flat_fallback_and_roi();
+        sensor_code_zero_is_still_rejected();
         invalid_metadata_is_atomic();
+        deep_shadows_against_metered_single();
         std::cout << "RAW HDR tests passed\n";
         return 0;
     } catch (const std::exception& error) {

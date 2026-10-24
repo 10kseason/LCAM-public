@@ -12,6 +12,7 @@ import android.view.OrientationEventListener
 import android.view.TextureView
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -21,9 +22,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -59,6 +58,7 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.lunacam.app.photon.PhotonCameraColors
+import dev.lunacam.app.photon.PhotonCameraLayout
 import dev.lunacam.app.photon.PhotonCameraModeBar
 import dev.lunacam.app.photon.PhotonCameraShutter
 import dev.lunacam.app.photon.PhotonPhotoViewer
@@ -160,86 +160,68 @@ fun SerNightCameraScreen(
     BackHandler { if (!model.busy) onBack() }
     MaterialTheme(colorScheme = PhotonCameraColors) {
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-            Column(Modifier.fillMaxSize().safeDrawingPadding()) {
-                Row(
-                    Modifier.fillMaxWidth().padding(horizontal = 4.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    TextButton(onClick = onExit ?: onBack, enabled = !model.busy) { Text("닫기") }
-                    Text(
-                        "나이트",
-                        Modifier.weight(1f).padding(horizontal = 8.dp).semantics {
-                            contentDescription = "현재 모드 나이트"
-                        },
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 1
-                    )
-                    if (!model.ready) {
-                        TextButton(onClick = { model.open(view) }, enabled = !model.busy) {
-                            Text("재연결")
-                        }
-                    }
-                    TextButton(
-                        onClick = { showOptions = true },
-                        modifier = Modifier.semantics { contentDescription = "보정 설정" }
-                    ) { Text("보정 설정") }
-                }
-                PhotonCameraModeBar("나이트", onBack, onRawAuto, onRaw, null, !model.busy)
-                val landscape = LocalConfiguration.current.orientation ==
-                    Configuration.ORIENTATION_LANDSCAPE
-                if (landscape) {
-                    Row(Modifier.weight(1f).fillMaxWidth()) {
-                        Column(Modifier.weight(1f).fillMaxSize()) {
-                            NightFraming()
-                            NightViewfinder(view, model, true, Modifier.weight(1f).fillMaxWidth())
-                            NightLens()
-                        }
-                        Column(
-                            Modifier.width(112.dp).fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
-                        ) {
-                            PhotonRecentPhotoButton(
-                                model.recentPhotoUri,
-                                viewer,
-                                Modifier.size(56.dp)
-                            )
-                            NightShutter(model) { model.capture(rotation) }
-                        }
-                    }
-                } else {
-                    NightFraming()
-                    NightViewfinder(view, model, false, Modifier.weight(1f).fillMaxWidth())
-                    NightLens()
-                    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                        PhotonRecentPhotoButton(
-                            model.recentPhotoUri,
-                            viewer,
-                            Modifier.align(Alignment.CenterStart).padding(start = 24.dp).size(64.dp)
+            val landscape = LocalConfiguration.current.orientation ==
+                Configuration.ORIENTATION_LANDSCAPE
+            PhotonCameraLayout(
+                landscape = landscape,
+                preview = { modifier -> NightViewfinder(view, model, landscape, modifier) },
+                modes = {
+                    PhotonCameraModeBar("나이트", onBack, onRawAuto, onRaw, null, !model.busy)
+                },
+                controls = {
+                    Column(
+                        Modifier.fillMaxWidth().padding(horizontal = 4.dp)
+                    ) {
+                        Text(
+                            "나이트",
+                            Modifier.padding(horizontal = 8.dp).semantics {
+                                contentDescription = "현재 모드 나이트"
+                            },
+                            style = MaterialTheme.typography.titleMedium,
+                            maxLines = 1
                         )
-                        NightShutter(model) { model.capture(rotation) }
+                        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
+                            TextButton(onClick = onExit ?: onBack, enabled = !model.busy) {
+                                Text("닫기")
+                            }
+                            if (!model.ready) {
+                                TextButton(onClick = { model.open(view) }, enabled = !model.busy) {
+                                    Text("재연결")
+                                }
+                            }
+                            TextButton(
+                                onClick = { showOptions = true },
+                                modifier = Modifier.semantics { contentDescription = "보정 설정" }
+                            ) { Text("보정 설정") }
+                        }
                     }
-                }
-                Row(
-                    Modifier.fillMaxWidth().height(52.dp).padding(horizontal = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        model.message,
-                        Modifier.weight(1f),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    if (model.recoverableCount > 0) {
-                        TextButton(
-                            onClick = model::recoverPending,
-                            enabled = !model.busy && model.processingCount == 0
-                        ) { Text("저장 재시도 (${model.recoverableCount})") }
+                    NightLens()
+                    NightFraming()
+                    Row(
+                        Modifier.fillMaxWidth().height(52.dp).padding(horizontal = 16.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            model.message,
+                            Modifier.weight(1f),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        if (model.recoverableCount > 0) {
+                            TextButton(
+                                onClick = model::recoverPending,
+                                enabled = !model.busy && model.processingCount == 0
+                            ) { Text("저장 재시도 (${model.recoverableCount})") }
+                        }
                     }
-                }
-            }
+                },
+                recent = {
+                    PhotonRecentPhotoButton(model.recentPhotoUri, viewer, Modifier.size(48.dp))
+                },
+                shutter = { NightShutter(model) { model.capture(rotation) } }
+            )
             if (showOptions) NightOptions(model, viewer) { showOptions = false }
         }
     }

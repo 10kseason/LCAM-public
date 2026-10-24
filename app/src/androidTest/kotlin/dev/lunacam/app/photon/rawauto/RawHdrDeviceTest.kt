@@ -11,11 +11,13 @@ import dev.lunacam.processing.nativebridge.SerNightColor
 import java.io.File
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.util.Random
 import kotlin.math.cos
 import kotlin.math.floor
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sin
+import kotlin.math.sqrt
 import org.json.JSONObject
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
@@ -27,6 +29,123 @@ import org.junit.runner.RunWith
 /** Synthetic Bayer data only: no CameraDevice, shutter, gallery access or publication. */
 @RunWith(AndroidJUnit4::class)
 class RawHdrDeviceTest {
+    @Test fun deepShadowHdrBeatsMeteredSingleThroughSameRenderer() {
+        val width = 256
+        val height = 192
+        val levels = doubleArrayOf(.01, .016, .03, .06)
+        fun scene(x: Int, y: Int): Double = if (x in 80 until 176 && y in 64 until 128) {
+            levels[(x - 80) / 24]
+        } else {
+            .22 + .07 * sin(x * .13) + .06 * cos(y * .19) + .05 * sin((x + y) * .08)
+        }
+        val random = Random(17017)
+        val frames = doubleArrayOf(1.0, .25, 4.0).map { exposure ->
+            val pixels = ByteBuffer.allocateDirect(
+                width * height * 2
+            ).order(ByteOrder.nativeOrder())
+            for (y in 0 until height) {
+                for (x in 0 until width) {
+                    val signal = scene(x, y) * exposure
+                    val noisy = signal + random.nextGaussian() * sqrt(.00012 * signal + .000004)
+                    pixels.putShort(
+                        (y * width + x) * 2,
+                        (64 + 959 * noisy).roundToInt().coerceIn(0, 1023).toShort()
+                    )
+                }
+            }
+            RawFusionFrame(
+                pixels,
+                RawFusionMetadata(
+                    DoubleArray(4) { 64.0 },
+                    1023.0,
+                    exposure,
+                    DoubleArray(4) { .00012 },
+                    DoubleArray(4) { .000004 }
+                )
+            )
+        }
+        val hdr = NativeRawHdr.fuse(width, height, frames)
+        assertEquals(7, hdr.acceptedMask)
+        assertArrayEquals(IntArray(6), hdr.shifts)
+        val metered = ByteBuffer.allocateDirect(width * height * 4).order(ByteOrder.nativeOrder())
+        val ideal = ByteBuffer.allocateDirect(width * height * 4).order(ByteOrder.nativeOrder())
+        for (y in 0 until height) {
+            for (x in 0 until width) {
+                val p = y * width + x
+                metered.putInt(p * 4, frames[0].pixels.getShort(p * 2).toInt() and 65535)
+                ideal.putInt(p * 4, (scene(x, y) * 65535).roundToInt())
+            }
+        }
+        val normalizedColor = color().copy(blackLevels = FloatArray(4), whiteLevel = 65535f)
+        val singleBitmap = NativeSerRender.renderNatural(
+            width,
+            height,
+            metered,
+            color(),
+            1.587401f,
+            .35f,
+            .01f
+        )
+        try {
+            val hdrBitmap = NativeSerRender.renderNatural(
+                width,
+                height,
+                hdr.packedPixels,
+                normalizedColor,
+                1.587401f * hdr.exposureGainScale,
+                .35f,
+                .01f
+            )
+            try {
+                val idealBitmap = NativeSerRender.renderNatural(
+                    width,
+                    height,
+                    ideal,
+                    normalizedColor,
+                    1.587401f,
+                    .35f,
+                    .01f
+                )
+                try {
+                    val ratios = JSONObject()
+                    for (band in levels.indices) {
+                        var singleError = 0.0
+                        var hdrError = 0.0
+                        for (y in 72 until 120) {
+                            for (x in 86 + band * 24 until 98 + band * 24) {
+                                val expected = idealBitmap.getPixel(x, y)
+                                val single = singleBitmap.getPixel(x, y)
+                                val fused = hdrBitmap.getPixel(x, y)
+                                for (shift in listOf(0, 8, 16)) {
+                                    val truth = (expected shr shift) and 255
+                                    singleError += (((single shr shift) and 255) - truth)
+                                        .toDouble().pow(2)
+                                    hdrError += (((fused shr shift) and 255) - truth)
+                                        .toDouble().pow(2)
+                                }
+                            }
+                        }
+                        val ratio = hdrError / singleError
+                        assertTrue("band=${levels[band]} rendered MSE ratio=$ratio", ratio < .6)
+                        ratios.put(levels[band].toString(), ratio)
+                    }
+                    write(
+                        "photon-raw-hdr-deep-shadow.json",
+                        JSONObject()
+                            .put("syntheticOnly", true).put("photosCaptured", 0)
+                            .put("sameNaturalRenderer", true).put("renderedMseRatios", ratios)
+                    )
+                } finally {
+                    idealBitmap.recycle()
+                }
+            } finally {
+                hdrBitmap.recycle()
+            }
+        } finally {
+            singleBitmap.recycle()
+        }
+    }
+
     private fun frames(width: Int, height: Int): List<RawFusionFrame> {
         val exposure = doubleArrayOf(1.0, .25, 4.0)
         val xWave = DoubleArray(width) { .07 * sin(it * .13) }

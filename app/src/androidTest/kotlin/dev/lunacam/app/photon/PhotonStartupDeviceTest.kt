@@ -315,7 +315,7 @@ class PhotonStartupDeviceTest {
                     position[0] + host.width,
                     position[1] + host.height
                 )
-                assertTrue("Preview must remain below the header", bounds.top >= header.bottom)
+                assertFalse("Preview overlaps controls", Rect.intersects(bounds, header))
                 assertFalse("Preview overlaps shutter", Rect.intersects(bounds, shutter))
                 val portrait = activity.resources.configuration.orientation ==
                     Configuration.ORIENTATION_PORTRAIT
@@ -324,6 +324,53 @@ class PhotonStartupDeviceTest {
                 }
             } finally {
                 preview.setTransform(original)
+            }
+        }
+        assertLargeViewport()
+    }
+
+    private fun assertLargeViewport() {
+        val screen = Rect().also(requireNotNull(node("카메라 화면 영역"))::getBoundsInScreen)
+        val viewport = Rect().also(requireNotNull(node("미리보기 영역"))::getBoundsInScreen)
+        val shutter = Rect().also(requireNotNull(node("사진 촬영"))::getBoundsInScreen)
+        assertTrue("Viewport must stay inside camera content", screen.contains(viewport))
+        val share = viewport.width().toDouble() * viewport.height() /
+            (screen.width().toDouble() * screen.height())
+        assertTrue("Viewport share was $share, expected at least 70%", share >= .70)
+        assertFalse("Viewport overlaps shutter", Rect.intersects(viewport, shutter))
+    }
+
+    @Test fun allModesReserveSeventyPercentInPortraitAndLandscape() {
+        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+            var initialOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+            scenario.onActivity { initialOrientation = it.requestedOrientation }
+            try {
+                for (orientation in listOf(
+                    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,
+                    ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                )) {
+                    scenario.onActivity { it.requestedOrientation = orientation }
+                    val expected = if (orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+                        Configuration.ORIENTATION_PORTRAIT
+                    } else {
+                        Configuration.ORIENTATION_LANDSCAPE
+                    }
+                    await {
+                        var matches = false
+                        scenario.onActivity {
+                            matches = it.resources.configuration.orientation == expected
+                        }
+                        matches && node("미리보기 영역") != null
+                    }
+                    for (mode in listOf("AUTO", "RAW", "RAW AUTO", "나이트")) {
+                        clickMode(mode)
+                        await { node("현재 모드 $mode") != null && node("사진 촬영") != null }
+                        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+                        assertLargeViewport()
+                    }
+                }
+            } finally {
+                scenario.onActivity { it.requestedOrientation = initialOrientation }
             }
         }
     }
@@ -412,6 +459,33 @@ class PhotonStartupDeviceTest {
             InstrumentationRegistry.getInstrumentation().uiAutomation.clearCache()
             clicked
         }
+    }
+
+    private fun clickMode(mode: String) {
+        // The landscape sidebar intentionally scrolls. Exercise the visible control instead
+        // of attempting an accessibility click on a chip outside its clipped viewport.
+        val automation = InstrumentationRegistry.getInstrumentation().uiAutomation
+        repeat(8) {
+            var target = node("$mode 모드")
+            repeat(4) { if (target?.isClickable != true) target = target?.parent }
+            val bounds = Rect()
+            target?.getBoundsInScreen(bounds)
+            if (target?.isVisibleToUser == true && !bounds.isEmpty && target?.isEnabled == true) {
+                if (target?.performAction(AccessibilityNodeInfo.ACTION_CLICK) == true) return
+            }
+            val scroller = requireNotNull(node("촬영 모드 선택"))
+            check(
+                scroller.packageName?.toString() ==
+                    InstrumentationRegistry.getInstrumentation().targetContext.packageName
+            )
+            if (!scroller.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)) {
+                scroller.performAction(AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD)
+            }
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            SystemClock.sleep(200)
+            automation.clearCache()
+        }
+        throw AssertionError("Mode chip not reachable: $mode")
     }
 
     private fun clickInSettings(label: String, forward: Boolean = true) {

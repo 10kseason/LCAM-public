@@ -24,9 +24,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -68,6 +66,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.lunacam.app.photon.PhotonAspectRatio
 import dev.lunacam.app.photon.PhotonCameraColors
+import dev.lunacam.app.photon.PhotonCameraLayout
 import dev.lunacam.app.photon.PhotonCameraModeBar
 import dev.lunacam.app.photon.PhotonCameraShutter
 import dev.lunacam.app.photon.PhotonPhotoViewer
@@ -191,71 +190,46 @@ fun RawCameraScreen(
     BackHandler { if (!model.busy) onBack() }
     MaterialTheme(colorScheme = PhotonCameraColors) {
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-            Column(Modifier.fillMaxSize().safeDrawingPadding()) {
-                RawHeader(model, onExit ?: onBack, { showExposure = !showExposure }) {
-                    showOptions = true
-                }
-                PhotonCameraModeBar(
-                    currentMode = if (model.naturalAuto) "RAW AUTO" else "RAW",
-                    onAuto = onBack,
-                    onRawAuto = onRawAuto,
-                    onRaw = onRaw,
-                    onNight = onNight,
-                    enabled = !model.busy
-                )
-                if (landscape) {
-                    Row(Modifier.weight(1f).fillMaxWidth()) {
-                        Column(Modifier.weight(1f).fillMaxSize()) {
-                            RawRatios(model)
-                            RawViewfinder(
-                                model,
-                                previewContainer,
-                                true,
-                                showExposure,
-                                { showExposure = false },
-                                Modifier.weight(1f).fillMaxWidth()
-                            )
-                            RawLenses(model, view)
-                        }
-                        Column(
-                            Modifier.width(112.dp).fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
-                        ) {
-                            PhotonRecentPhotoButton(
-                                model.recentPhotoUri,
-                                viewer,
-                                Modifier.size(56.dp),
-                                mimeType = model.recentPhotoMimeType
-                            )
-                            RawShutter(model) { model.capture(rotation) }
-                        }
-                    }
-                } else {
-                    RawRatios(model)
+            PhotonCameraLayout(
+                landscape = landscape,
+                preview = { modifier ->
                     RawViewfinder(
                         model,
                         previewContainer,
-                        false,
+                        landscape,
                         showExposure,
                         { showExposure = false },
-                        Modifier.weight(1f).fillMaxWidth()
+                        modifier
                     )
-                    RawLenses(model, view)
-                    Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                        PhotonRecentPhotoButton(
-                            model.recentPhotoUri,
-                            viewer,
-                            Modifier.align(
-                                Alignment.CenterStart
-                            ).padding(start = 24.dp).size(64.dp),
-                            mimeType = model.recentPhotoMimeType
-                        )
-                        RawShutter(model) { model.capture(rotation) }
+                },
+                modes = {
+                    PhotonCameraModeBar(
+                        currentMode = if (model.naturalAuto) "RAW AUTO" else "RAW",
+                        onAuto = onBack,
+                        onRawAuto = onRawAuto,
+                        onRaw = onRaw,
+                        onNight = onNight,
+                        enabled = !model.busy
+                    )
+                },
+                controls = {
+                    RawHeader(model, onExit ?: onBack, { showExposure = !showExposure }) {
+                        showOptions = true
                     }
-                }
-                RawStatus(model)
-            }
+                    RawLenses(model, view)
+                    RawRatios(model)
+                    RawStatus(model)
+                },
+                recent = {
+                    PhotonRecentPhotoButton(
+                        model.recentPhotoUri,
+                        viewer,
+                        Modifier.size(48.dp),
+                        mimeType = model.recentPhotoMimeType
+                    )
+                },
+                shutter = { RawShutter(model) { model.capture(rotation) } }
+            )
             if (showOptions) {
                 ModalBottomSheet(
                     onDismissRequest = { showOptions = false },
@@ -284,33 +258,34 @@ private fun RawHeader(
     onExposure: () -> Unit,
     onOptions: () -> Unit
 ) {
-    Row(
-        Modifier.fillMaxWidth().padding(horizontal = 4.dp),
-        verticalAlignment = Alignment.CenterVertically
+    Column(
+        Modifier.fillMaxWidth().padding(horizontal = 4.dp)
     ) {
-        TextButton(onClick = onExit, enabled = !model.busy) { Text("닫기") }
         Text(
             if (model.naturalAuto) "RAW AUTO" else "RAW",
-            Modifier.weight(1f).padding(horizontal = 8.dp).semantics {
+            Modifier.padding(horizontal = 8.dp).semantics {
                 contentDescription = "현재 모드 ${if (model.naturalAuto) "RAW AUTO" else "RAW"}"
             },
             style = MaterialTheme.typography.titleMedium,
             maxLines = 1
         )
-        TextButton(
-            onClick = onExposure,
-            enabled =
-            model.ready && model.capabilities.ev && !model.controls.manualExposure &&
-                !model.busy,
-            modifier = Modifier.semantics { contentDescription = "밝기 조절" }
-        ) { Text("EV") }
-        TextButton(
-            onClick = onOptions,
-            modifier = Modifier.semantics {
-                contentDescription = "보정 설정"
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
+            TextButton(onClick = onExit, enabled = !model.busy) { Text("닫기") }
+            TextButton(
+                onClick = onExposure,
+                enabled =
+                model.ready && model.capabilities.ev && !model.controls.manualExposure &&
+                    !model.busy,
+                modifier = Modifier.semantics { contentDescription = "밝기 조절" }
+            ) { Text("EV") }
+            TextButton(
+                onClick = onOptions,
+                modifier = Modifier.semantics {
+                    contentDescription = "보정 설정"
+                }
+            ) {
+                Text("보정 설정")
             }
-        ) {
-            Text("보정 설정")
         }
     }
 }

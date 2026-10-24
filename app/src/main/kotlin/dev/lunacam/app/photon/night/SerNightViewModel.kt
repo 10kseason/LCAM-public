@@ -11,6 +11,7 @@ import androidx.core.content.edit
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dev.lunacam.app.photon.PhotonProcessingGate
+import dev.lunacam.app.photon.PhotonShutterSound
 import dev.lunacam.app.photon.raw.NightReadiness
 import dev.lunacam.app.photon.raw.RawBurst
 import dev.lunacam.app.photon.raw.RawBurstCamera
@@ -201,6 +202,10 @@ class SerNightViewModel(application: Application) : AndroidViewModel(application
     fun capture(displayRotation: Int) {
         val active = camera ?: return
         if (!canCapture) return
+        if (!shutterSound.play()) {
+            message = "셔터음을 준비하지 못했습니다. 촬영을 다시 시도해 주세요."
+            return
+        }
         val token = generation
         val ser = serEnabled
         val id = UUID.randomUUID().toString()
@@ -333,7 +338,10 @@ class SerNightViewModel(application: Application) : AndroidViewModel(application
         previewReadiness = NightReadiness(false, "camera_closed")
     }
 
+    private val shutterSound = PhotonShutterSound()
+
     override fun onCleared() {
+        shutterSound.close()
         closeCamera()
     }
 

@@ -5,20 +5,25 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
@@ -36,6 +41,65 @@ val PhotonCameraColors = darkColorScheme(
     surface = Color(0xFF111518),
     onSurface = Color(0xFFF1F3F5)
 )
+
+/** Reserve the viewport before measuring controls, so text/settings cannot shrink it. */
+@Composable
+fun PhotonCameraLayout(
+    landscape: Boolean,
+    preview: @Composable (Modifier) -> Unit,
+    modes: @Composable () -> Unit,
+    controls: @Composable () -> Unit,
+    recent: @Composable () -> Unit,
+    shutter: @Composable () -> Unit
+) {
+    val viewport = Modifier.fillMaxSize().testTag("camera-preview-area").semantics {
+        contentDescription = "미리보기 영역"
+    }
+    val screen = Modifier.fillMaxSize().safeDrawingPadding().semantics {
+        contentDescription = "카메라 화면 영역"
+    }
+    if (landscape) {
+        Row(screen) {
+            Box(Modifier.weight(0.72f).fillMaxSize()) { preview(viewport) }
+            Column(Modifier.weight(0.28f).fillMaxSize()) {
+                modes()
+                Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())) {
+                    controls()
+                }
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    recent()
+                    shutter()
+                }
+            }
+        }
+    } else {
+        Column(screen) {
+            Box(Modifier.weight(0.72f).fillMaxWidth()) { preview(viewport) }
+            Column(Modifier.weight(0.28f).fillMaxWidth()) {
+                modes()
+                Row(Modifier.weight(1f).fillMaxWidth()) {
+                    Column(
+                        Modifier.weight(1f).fillMaxSize().verticalScroll(rememberScrollState())
+                    ) {
+                        controls()
+                        recent()
+                    }
+                    Column(
+                        Modifier.width(96.dp).fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        shutter()
+                    }
+                }
+            }
+        }
+    }
+}
 
 /** Keep the capture target identical across pipelines, including its accessibility contract. */
 @Composable
@@ -72,6 +136,7 @@ fun PhotonCameraModeBar(
 ) {
     Row(
         modifier.fillMaxWidth().horizontalScroll(rememberScrollState())
+            .semantics { contentDescription = "촬영 모드 선택" }
             .padding(horizontal = 12.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
