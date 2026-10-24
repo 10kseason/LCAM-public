@@ -14,8 +14,8 @@ android {
         applicationId = "dev.lunacam.app"
         minSdk = 35
         targetSdk = 36
-        versionCode = 24
-        versionName = "0.17.0-viewfinder-sound"
+        versionCode = 23
+        versionName = "0.16.1-public-preview"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {

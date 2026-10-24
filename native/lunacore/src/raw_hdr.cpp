@@ -35,9 +35,7 @@ double variance(const Frame& f, int p, int c) {
 bool usable(const Frame& f, int p, int c) {
     const auto& m = f.raw.metadata;
     const double margin = std::max(4.0, (m.white - m.black[c]) * 0.005);
-    // Black is an offset, not a validity floor: read noise can cross it in a valid
-    // short exposure. Reject sensor-code clipping, not signed dark measurements.
-    return f.raw.pixels[p] > 0 && f.raw.pixels[p] < m.white - margin;
+    return f.raw.pixels[p] > m.black[c] + 1 && f.raw.pixels[p] < m.white - margin;
 }
 
 double guide(const Frame& f, int p, int width) {
@@ -193,10 +191,8 @@ bool fuse_raw_hdr(const std::array<RawFrame, 3>& input, int width, int height,
                 for (int f = 0; f < 3; ++f) {
                     if (trust[f] <= 0) continue;
                     const int q = positions[f] + cp;
-                    // Exposure-normalized variance already prices the short frame's noise.
-                    // A reference-weight floor would throw away the long exposure's SNR;
-                    // registration, clipping checks and cell trust still reject unsafe samples.
-                    const double w = trust[f] / variance(frames[f], q, c);
+                    // Keep at least 20% reference influence even with optimistic noise metadata.
+                    const double w = trust[f] * std::min(2 * base_weight, 1 / variance(frames[f], q, c));
                     sum += w * signal(frames[f], q, c);
                     weight_sum += w;
                 }

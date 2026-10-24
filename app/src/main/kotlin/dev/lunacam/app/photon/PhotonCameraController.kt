@@ -615,10 +615,6 @@ class PhotonCameraController(application: Application) : AndroidViewModel(applic
         val photo = capture ?: return
         val active = camera ?: return
         if (!canCapture || !owner.lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) return
-        if (!shutterSound.play()) {
-            message = "셔터음을 준비하지 못했습니다. 촬영을 다시 시도해 주세요."
-            return
-        }
         val started = SystemClock.elapsedRealtime()
         val name = "${System.currentTimeMillis()}_${UUID.randomUUID()}"
         val directory = File(pendingRoot, name)
@@ -852,10 +848,7 @@ class PhotonCameraController(application: Application) : AndroidViewModel(applic
         stillEvents = null
     }
 
-    private val shutterSound = PhotonShutterSound()
-
     override fun onCleared() {
-        shutterSound.close()
         release()
     }
 }
